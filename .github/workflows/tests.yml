@@ -3,6 +3,7 @@ name: Python tests
 on:
   push:
   pull_request:
+  workflow_dispatch:
 
 jobs:
   test:
@@ -26,8 +27,12 @@ jobs:
       - name: Create artifacts folder
         run: mkdir -p artifacts
 
-      - name: Run tests
-        run: python -m pytest -v --junitxml=artifacts/junit-report.xml
+      - name: Run smoke tests
+        run: python -m pytest -v -m smoke
+
+      - name: Run full test suite
+        run: |
+          python -m pytest -v --junitxml=artifacts/junit-report.xml
 
       - name: Upload Selenium screenshots
         if: always()
