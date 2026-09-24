@@ -4,9 +4,6 @@ on:
   push:
   pull_request:
 
-permissions:
-  contents: read
-
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -26,13 +23,24 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Create artifacts folder
+        run: mkdir -p artifacts
+
       - name: Run tests
-        run: python -m pytest -v
+        run: python -m pytest -v --junitxml=artifacts/junit-report.xml
 
       - name: Upload Selenium screenshots
         if: always()
         uses: actions/upload-artifact@v7
         with:
           name: selenium-screenshots
-          path: artifacts/
+          path: artifacts/*.png
           if-no-files-found: warn
+
+      - name: Upload JUnit test report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: junit-test-report
+          path: artifacts/junit-report.xml
+          if-no-files-found: error

@@ -7,6 +7,7 @@ class InventoryPage:
         "add-to-cart-sauce-labs-backpack"
     )
     CART_BADGE = (By.CLASS_NAME, "shopping_cart_badge")
+    CART_LINK = (By.CLASS_NAME, "shopping_cart_link")
 
     def __init__(self, driver):
         self.driver = driver
@@ -16,3 +17,6 @@ class InventoryPage:
 
     def get_cart_count(self):
         return self.driver.find_element(*self.CART_BADGE).text
+
+    def open_cart(self):
+        self.driver.find_element(*self.CART_LINK).click()
