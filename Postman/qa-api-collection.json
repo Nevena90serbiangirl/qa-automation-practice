@@ -1,0 +1,75 @@
+{
+  "info": {
+    "_postman_id": "5619c586-a917-4551-b0b0-5f3f1a16db83",
+    "name": "QA Automation API Tests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "50178215",
+    "_collection_link": "https://go.postman.co/collection/50178215-5619c586-a917-4551-b0b0-5f3f1a16db83?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "GET Existing Post",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Response is JSON\", function () {\r\n    pm.expect(pm.response.headers.get(\"Content-Type\"))\r\n        .to.include(\"application/json\");\r\n});\r\n\r\npm.test(\"Correct post is returned\", function () {\r\n    const responseData = pm.response.json();\r\n\r\n    pm.expect(responseData.id).to.eql(1);\r\n    pm.expect(responseData.title).to.be.a(\"string\");\r\n    pm.expect(responseData.title).not.to.be.empty;\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/posts/1",
+          "protocol": "https",
+          "host": [
+            "jsonplaceholder",
+            "typicode",
+            "com"
+          ],
+          "path": [
+            "posts",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET Missing Post",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 404\", function () {\r\n    pm.response.to.have.status(404);\r\n});\r\n\r\npm.test(\"Response body is empty object\", function () {\r\n    const responseData = pm.response.json();\r\n\r\n    pm.expect(responseData).to.eql({});\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/posts/9999",
+          "protocol": "https",
+          "host": [
+            "jsonplaceholder",
+            "typicode",
+            "com"
+          ],
+          "path": [
+            "posts",
+            "9999"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
