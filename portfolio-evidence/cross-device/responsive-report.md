@@ -9,8 +9,8 @@
 
 | Device | Result | Evidence |
 |---|---|---|
-| Samsung Galaxy S20 (Portrait) | Pass – login page layout | screenshots/galaxy-s20.png |
-| Samsung Galaxy S22 (Portrait) | Pass – login page layout | screenshots/galaxy-s22.png |
+| Samsung Galaxy S20 (Portrait) | Pass – login page layout | [Screenshot](screenshots/galaxy-s20.jpg) |
+| Samsung Galaxy S22 (Portrait) | Pass – login page layout | [Screenshot](screenshots/galaxy-s22.jpg) |
 | Windows 11 / Chrome 71 | Not tested – screenshot was blank | No usable screenshot |
 | iPhone / Safari | Not tested – device was unavailable | No screenshot |
 
